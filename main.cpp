@@ -13,6 +13,17 @@ std::vector<char> board {
         'O', '.', 'O', '.', 'O', '.', 'O', '.',
 };
 
+struct Coords {
+    int x;
+    int y;
+};
+
+Coords indexToCoords(int index) {
+    return { index % 8, index / 8 };
+}
+int coordsToIndex(Coords coords) {
+
+}
 void printBoard() {
     for (int i = 0; i < board.size(); ++i) {
         if (i % 8 == 0)
