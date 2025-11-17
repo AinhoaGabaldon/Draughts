@@ -22,7 +22,7 @@ Coords indexToCoords(int index) {
     return { index % 8, index / 8 };
 }
 int coordsToIndex(Coords coords) {
-
+    return coords.x + coords.y * 8;
 }
 void printBoard() {
     for (int i = 0; i < board.size(); ++i) {
