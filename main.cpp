@@ -13,8 +13,10 @@ std::vector<char> board {
         'O', '.', 'O', '.', 'O', '.', 'O', '.',
 };
 
+char currentPlayer;
 char players1 = 'x';
 char players2 = 'o';
+
 struct Coords {
     int x;
     int y;
@@ -39,17 +41,26 @@ void printBoard() {
 void movePawn(int form, int to) {
     board.at(to) = board.at(form);
     board.at(form) = '.';
-}
+
+
+    int countPawn() {
+        for (auto cell : board)
+            if (cell == 'x')
+            if (cell == 'o')
+    }
+
 int main()
-{
+{   
     printBoard();
+    currentPlayer = player2;
     movePawn(40, 33);
 
     printBoard();
+    currentPlayer = player1;
     movePawn(40, 33);
     
     printBoard();
-
+    currentPlayer = player1;
     }
     
  
