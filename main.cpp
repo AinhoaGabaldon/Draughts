@@ -2,52 +2,59 @@
 #include <iostream>
 #include <vector>
 
-std::vector<char> board {
-        '.', 'X', '.', 'X', '.', 'X', '.', 'X',
-        'X', '.', 'X', '.', 'X', '.', 'X', '.',
-        '.', 'X', '.', 'X', '.', 'X', '.', 'X',
-        '.', '.', '.', '.', '.', '.', '.', '.',
-        '.', '.', '.', '.', '.', '.', '.', '.',
-        'O', '.', 'O', '.', 'O', '.', 'O', '.',
-        '.', 'O', '.', 'O', '.', 'O', '.', 'O',
-        'O', '.', 'O', '.', 'O', '.', 'O', '.',
+std::vector<char> board{
+		'.', 'X', '.', 'X', '.', 'X', '.', 'X',
+		'X', '.', 'X', '.', 'X', '.', 'X', '.',
+		'.', 'X', '.', 'X', '.', 'X', '.', 'X',
+		'.', '.', '.', '.', '.', '.', '.', '.',
+		'.', '.', '.', '.', '.', '.', '.', '.',
+		'O', '.', 'O', '.', 'O', '.', 'O', '.',
+		'.', 'O', '.', 'O', '.', 'O', '.', 'O',
+		'O', '.', 'O', '.', 'O', '.', 'O', '.',
 };
 
 struct Coords {
-    int x;
-    int y;
+	int x;
+	int y;
 };
 
 Coords indexToCoords(int index) {
-    return { index % 8, index / 8 };
+	return { index % 8, index / 8 };
 }
 int coordsToIndex(Coords coords) {
-
+	return coords.x + coords.y * 8;
 }
 void printBoard() {
-    for (int i = 0; i < board.size(); ++i) {
-        if (i % 8 == 0)
-            std::cout << '\n';
+	for (int i = 0; i < board.size(); ++i) {
+		if (i % 8 == 0)
+			std::cout << '\n';
 
-        std::cout << ' ' << board.at(i);
-    }
+		std::cout << ' ' << board.at(i);
+	}
 
-    std::cout << "\n\n";
+	std::cout << "\n\n";
 }
 void movePawn(int form, int to) {
-    board.at(to) = board.at(form);
-    board.at(form) = '.';
+	board.at(to) = board.at(form);
+	board.at(form) = '.';
 }
+
+void capture(int from, int to, int jump) {
+	movePawn(from, jump);
+	movePawn(jump, to);
+}
+
 int main()
 {
-    printBoard();
-    movePawn(40, 33);
+	printBoard();
+	movePawn(coordsToIndex({ 0,5 }), coordsToIndex({ 1,4 }));
 
-    printBoard();
-    movePawn(40, 33);
-    
-    printBoard();
+	printBoard();
+	movePawn(40, 33);
 
-    }
-    
- 
+	printBoard();
+
+}
+
+
+
