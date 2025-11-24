@@ -14,8 +14,8 @@ std::vector<char> board {
 };
 
 char currentPlayer;
-char players1 = 'x';
-char players2 = 'o';
+char player1 = 'x';
+char player2 = 'o';
 
 struct Coords {
     int x;
@@ -42,25 +42,38 @@ void movePawn(int form, int to) {
     board.at(to) = board.at(form);
     board.at(form) = '.';
 
+bool hasAnyPawn(char player) {
+	for (auto cell : board) {
+		if (cell == player)
+			return true;
+	}
 
-    int countPawn() {
-        for (auto cell : board)
-            if (cell == 'x')
-            if (cell == 'o')
-    }
+	return false;
+}
+void checkWinCodition() {
+	if (!hasAnyPawn('o')) {
+		std::cout << "Player 'x' wins" << std::cout;
+	}
+	if (hasAnyPawn('x')) {
+		std::cout << "Player 'o' wins" << std::cout;
+	}
+}
 
 int main()
-{   
-    printBoard();
-    currentPlayer = player2;
-    movePawn(40, 33);
+{
+	printBoard();
+	currentPlayer = player2;
+	movePawn(40, 33);
+	checkWinCodition();
 
-    printBoard();
-    currentPlayer = player1;
-    movePawn(40, 33);
-    
-    printBoard();
-    currentPlayer = player1;
-    }
-    
- 
+	printBoard();
+	currentPlayer = player1;
+	movePawn(40, 33);
+	checkWinCodition();
+
+	printBoard();
+	currentPlayer = player1;
+	checkWinCodition();
+}
+
+
